@@ -1,4 +1,7 @@
-# author : shriamrut
+import nltk
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+
 braille_to_english = {}
 english_to_braille = {}
 punctuations = "!$'(),-./:;?" # Note these are the punctuations for which braille is available
@@ -130,23 +133,4 @@ def tolower(braille_text):
         else:
             result = result + braille_text[i]
             i=i+1
-    return result
-
-def cleanup(braille_text):
-    i=0
-    result = ""
-    while i<len(braille_text):
-        if braille_text[i]==" ":
-            result = result + braille_text[i]
-            i=i+1
-        elif i+1 < len(braille_text) and is_braille_available((braille_text[i:i+2])):
-            result = result + braille_text[i:i+2]
-            i=i+2
-        elif is_braille_available(braille_text[i]):
-            result = result + braille_text[i]
-            i=i+1
-        else:
-            # ignore unwanted characters
-            i=i+1
-            pass
     return result
